@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <Title>HERRAMIENTAS 3</Title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/script.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet"/>
+    
+    </head>
+<body>
+    
+<header class="container text-center">
+    <h1>Consultar usuarios</h1> 
+</header>
+<div class="container">
+    <div class="form-group">
+        <!-- Nombre_Com -->
+    <label for="Con_Cel" class="control-label">Ingrese Cedula </label>
+        <input type="text" class="form-control" id="Nombre_Com_id" name="Nombre_Com" placeholder="1000555222">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary mr-2" onclick="Consultar()">Consultar</button>
+      </div>
+
+</div>
+<div class="container">
+    <div class="row">
+      <table border="2" class="table" id="tablaprueba">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nombre Completo</th>
+            <th>Documento de identidad</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>fecha de nacimiento</th>
+            <th>Tema interes</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary mr-2" onclick="agregarFila()">Agregar Fila</button>
+      </div>
+    </div>
+  </div>
+    
+</body>
+</html>
