@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { createClient } from '../../helper/createClient';
+import React from 'react';
+import { createClient } from '../../helper/client';
+import { useForm } from '../../hooks/useForm';
 
 const ClientForm = () => {
 
@@ -13,19 +14,12 @@ const ClientForm = () => {
         estado: 'ACTIVO'
     };
 
-    const [datos, setDatos] = useState(defaultClient)
+    const [datos, handleInputChange, reset] = useForm(defaultClient);
 
     const handleClient = (event) => {
         event.preventDefault();
         createClient(datos);
-        document.getElementById("client-form").reset();
-    }
-
-    const handleInputChange = (event) => {
-        setDatos({
-            ...datos,
-            [event.target.name]: event.target.value
-        })
+        reset();
     }
 
     return (
@@ -45,6 +39,7 @@ const ClientForm = () => {
                             id="Num_Doc_id"
                             name="nro_DNI"
                             placeholder="1100022255"
+                            value={datos.nro_DNI}
                             onChange={handleInputChange} />
                     </div>
 
@@ -55,6 +50,7 @@ const ClientForm = () => {
                             id="Nombre_Com_id"
                             name="nombre_cliente"
                             placeholder="Juan Gomez"
+                            value={datos.nombre_cliente}
                             onChange={handleInputChange} />
                     </div>
 
@@ -63,6 +59,7 @@ const ClientForm = () => {
                         <input type="text" className="form-control"
                             id="temas_interes"
                             name="tema_interes"
+                            value={datos.tema_interes}
                             onChange={handleInputChange}
                             placeholder="Calle 56 sur 89 00" />
                     </div>
@@ -71,6 +68,7 @@ const ClientForm = () => {
                         <label className="control-label">Numero de telefono</label>
                         <input type="text" className="form-control"
                             id="Num_Tel_id" name="telefono"
+                            value={datos.telefono}
                             onChange={handleInputChange}
                             placeholder="3228521259" />
                     </div>
@@ -79,6 +77,7 @@ const ClientForm = () => {
                         <label className="control-label">Correo Electronica</label>
                         <input type="text" className="form-control"
                             id="Email_id" name="email"
+                            value={datos.email}
                             onChange={handleInputChange}
                             placeholder="Ejemplo@dominio.com" />
                     </div>
@@ -87,7 +86,9 @@ const ClientForm = () => {
                         <label className="control-label">Fecha de nacimiento</label>
                         <input type="date"
                             className="form-control" id="Fec_Na_id"
-                            name="fecha_nacimiento" onChange={handleInputChange}
+                            name="fecha_nacimiento"
+                            value={datos.fecha_nacimiento}
+                             onChange={handleInputChange}
                             placeholder="23/05/2020" />
 
                     </div>
