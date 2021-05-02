@@ -17,11 +17,12 @@ const Login = () =>{
     })
 }
 
-const handleLogin = useCallback(() => history.push('/client'), [history]);
+const handleLogin = useCallback(() => history.push('/Inicio'), [history]);
 
   return(<>
   <form className = 'container' onSubmit = {handleLogin}>
-    <div class="form-group">
+  <h2 className="text-center mt-5">Inicio de sesion</h2>
+    <div class="form-group mt-5">
       <Label className = "control-label" children = 'Email' ></Label>
       <input 
                 type="email" 
