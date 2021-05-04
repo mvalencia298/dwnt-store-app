@@ -12,6 +12,16 @@ export const createClient = (client) =>{
       });
 }
 
+export const updateClient = (client) =>{
+  axios.put(`${endpoint}/${client.codigo_cliente}`, client)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
 
 export const getClients = async (resolve, reject) =>{
     const {data} = await axios.get(endpoint);

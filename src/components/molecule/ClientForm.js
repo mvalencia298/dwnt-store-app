@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createClient } from '../../helper/client';
+import { updateClient } from '../../helper/client';
 import { useForm } from '../../hooks/useForm';
+import { Popup } from './Popup';
 
-const ClientForm = () => {
+const ClientForm = ({data}) => {
 
-    let defaultClient = {
-        telefono: '',
-        nombre_cliente: '',
-        email: '',
-        nro_DNI: '',
-        fecha_nacimiento: '',
-        tema_interes: '',
-        estado: 'ACTIVO'
-    };
+    const [isOpen, setIsOpen] = useState(false);
+    const [datos, handleInputChange, reset, setValues] = useForm(data);
 
-    const [datos, handleInputChange, reset] = useForm(defaultClient);
+    useEffect(() => {
+        setValues({
+            ...data
+    }, [data])});
 
     const handleClient = (event) => {
         event.preventDefault();
-        createClient(datos);
+        setIsOpen(!isOpen);
+    }
+
+    const handleCreateClient = () => {
+        if (datos.codigo_cliente) {
+            updateClient(datos);
+        }else{
+            createClient(datos);
+        }
+        setIsOpen(!isOpen);
         reset();
     }
 
     return (
-        <>
+        <div>
             <header>
                 <div className="container text-center">
                     <h1>Administrador de clientes</h1>
@@ -88,17 +95,32 @@ const ClientForm = () => {
                             className="form-control" id="Fec_Na_id"
                             name="fecha_nacimiento"
                             value={datos.fecha_nacimiento}
-                             onChange={handleInputChange}
+                            onChange={handleInputChange}
                             placeholder="23/05/2020" />
 
                     </div>
 
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">agregar</button>
+                        <button type="submit" className="btn btn-primary">{datos.codigo_cliente? 'Actualizar' : 'Agregar'}</button>
                     </div>
                 </form>
             </div>
-        </>
+            {isOpen && <Popup
+                content={<>
+                    <b>Confirmación</b>
+                    <p>Confirmate create user</p>
+                    <button onClick={handleCreateClient}>yes</button>
+                    <button onClick={() => {
+                        setIsOpen(!isOpen)
+                        reset();
+                    }
+                    }> Not</button>
+                </>}
+                handleClose={()=>{
+                    setIsOpen(!isOpen)
+                }}
+            />}
+        </div >
     );
 }
 
