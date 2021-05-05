@@ -18,8 +18,8 @@ export const ClientPage = () => {
 
     return (
         <div>
-            <ClientForm data = {cuerrentUsert}/>
-            <TableClients action={setCuerrentUsert} />
+            <ClientForm cuerrentUsert = {cuerrentUsert} defaultClient = {defaultClient} action={setCuerrentUsert} />
+            <TableClients cuerrentUsert = {cuerrentUsert} action={setCuerrentUsert} />
         </div>
     )
 }

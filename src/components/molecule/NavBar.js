@@ -9,7 +9,7 @@ export const NavBar = () => {
 
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <NavLink exact activeClassName="active" to="/" className="nav-item nav-link"> Home </NavLink>
+                    <NavLink exact activeClassName="active" to="/" className="nav-item nav-link"> Logout </NavLink>
                     <NavLink exact activeClassName="active" to="/client" className="nav-item nav-link"> Cliente </NavLink>
                     <NavLink exact activeClassName="active" to="/cd" className="nav-item nav-link"> CD</NavLink>
                 </div>

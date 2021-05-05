@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useForm } from '../../hooks/useForm';
 import './login.css';
 
-const Login = () => {
+const Login = ({setSession}) => {
+
 
   const history = useHistory();
   const [errors, setErrors] = useState({})
@@ -18,6 +19,8 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (loginData.email === 'mauro@p.cpm' && loginData.password === '123456') {
+      window.localStorage.setItem('user', JSON.stringify(loginData));
+      setSession({...loginData});
       loginadd();
     } else {
       let errors = {};

@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import { getClients } from '../../helper/client';
 
-const TableClients = ({ datos, action }) => {
+const TableClients = ({ cuerrentUsert, action }) => {
 
     const [clientes, setClientes] = useState([]);
     useEffect(() => {
+        console.log(cuerrentUsert);
         getClients().then((data) => {
             setClientes(data);
         });
-    }, [datos]);
+    }, [cuerrentUsert]);
 
     const handleUpdate = (u) => {
         action(u);
@@ -43,7 +44,7 @@ const TableClients = ({ datos, action }) => {
                                         <td>{item.email}</td>
                                         <td>{item.fecha_nacimiento}</td>
                                         <td>{item.estado}</td>
-                                        <td><button onClick={() => {
+                                        <td><button className="btn btn-primary"  onClick={() => {
                                             handleUpdate(item);
                                         }}>Actualizar</button></td>
                                     </tr>

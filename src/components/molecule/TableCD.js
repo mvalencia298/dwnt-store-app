@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { getCD } from '../../helper/cd';
 
-export const TableCD = ({ datos }) => {
-
-    const [clientes, setClientes] = useState([]);
+export const TableCD = ({currentCD, action }) => {
     useEffect(() => {
-        getCD().then((data) => {
-            setClientes(data);
+        console.log(currentCD);
+        getCD().then((cdList) => {
+            setCd(cdList);
         });
-    }, [datos]);
+    }, [currentCD]);
+
+    const [cd, setCd] = useState([currentCD]);
+
+    const handleUpdate = (u) => {
+        action(u);
+    }
 
     return (
         <div>
@@ -21,16 +26,20 @@ export const TableCD = ({ datos }) => {
                                 <th>condicion</th>
                                 <th>ubicacion</th>
                                 <th>estado</th>
+                                <th>...</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                clientes.map((item) => (
-                                    <tr key={item.nro_CD}>
+                                cd.map((item) => (
+                                    <tr key={item.codigo_titulo}>
                                         <td>{item.nro_CD}</td>
                                         <td>{item.condicion}</td>
                                         <td>{item.ubicacion}</td>
                                         <td>{item.estado}</td>
+                                        <td><button className="btn btn-primary"  onClick={() => {
+                                            handleUpdate(item);
+                                        }}>Actualizar</button></td>
                                     </tr>
                                 ))
                             }

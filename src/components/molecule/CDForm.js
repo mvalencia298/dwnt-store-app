@@ -1,24 +1,35 @@
-import React from 'react'
-import { createCD } from '../../helper/cd';
+import React, { useEffect, useState } from 'react'
+import { createCD, updateCD } from '../../helper/cd';
 import { useForm } from '../../hooks/useForm';
+import { Popup } from './Popup';
 
-export const CDForm = () => {
+export const CDForm = ({ currentCD, defaultCD, action }) => {
 
-    let defaultCD = {
-        nro_CD: "",
-        condicion: "",
-        ubicacion: "",
-        estado: ""
-    };
-
-    const [datos, handleInputChange, reset] = useForm(defaultCD);
+    const [isOpen, setIsOpen] = useState(false);
+    const [datos, handleInputChange, reset, setValues] = useForm(defaultCD);
 
     const handleClient = (event) => {
         event.preventDefault();
-        createCD(datos);
+        setIsOpen(!isOpen);
+    }
+
+    const handleCreateCD = () => {
+        if (datos.codigo_titulo) {
+            updateCD(datos).then(() => {
+                action(defaultCD);
+            });
+        } else {
+            createCD(datos).then(() => {
+                action(defaultCD);
+            });
+        }
+        setIsOpen(!isOpen);
         reset();
     }
 
+    useEffect(() => {
+        setValues(currentCD);
+    }, [currentCD]);
     return (
         <div>
             <header>
@@ -71,10 +82,25 @@ export const CDForm = () => {
                     </div>
 
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">agregar</button>
+                        <button type="submit" className="btn btn-primary">{datos.codigo_titulo ? 'Actualizar' : 'Agregar'}</button>
                     </div>
                 </form>
             </div>
+            <div>{isOpen && <Popup
+                content={<>
+                    <b>Confirmation</b>
+                    <p>Confirmate create or update CD</p>
+                    <button className="btn btn-primary" onClick={handleCreateCD}>yes</button>
+                    <button className="btn btn-primary" onClick={() => {
+                        setIsOpen(!isOpen)
+                        reset();
+                    }
+                    }> Not</button>
+                </>}
+                handleClose={() => {
+                    setIsOpen(!isOpen)
+                }}
+            />}</div>
         </div>
     )
 }

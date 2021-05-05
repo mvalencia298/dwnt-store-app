@@ -1,32 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect,
   } from 'react-router-dom';
-import { CDForm } from '../components/molecule/CDForm';
-import { TableCD } from '../components/molecule/TableCD';
 import Login from '../components/Login/Login';
 import { NavBar } from '../components/molecule/NavBar';
 import { ClientPage } from '../components/pages/ClientPage.js';
+import { CdPage } from '../components/pages/CdPage';
+
+
 
 export const AppRouter = () => {
 
+  useEffect(()=>{
+    JSON.parse(window.localStorage.getItem('user'))&&setSession(JSON.parse(window.localStorage.getItem('user')));
+  },[]);
+  
+  const [session, setSession] = useState({
+    email:''
+  })
     return (
         <Router>
         <div>
-        <NavBar />
+        {session.email&&<NavBar />}
           <Switch>
               <Route exact path="/client">
               <ClientPage />
               </Route>
               <Route exact path="/cd">
-                <CDForm />
-                <TableCD />
+              <CdPage />
               </Route>
               <Route exact path="/">
-                <Login />
+                <Login session = {session} setSession={setSession} />
               </Route>
               <Redirect to="/" />
           </Switch>

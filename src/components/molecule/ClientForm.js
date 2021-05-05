@@ -4,15 +4,13 @@ import { updateClient } from '../../helper/client';
 import { useForm } from '../../hooks/useForm';
 import { Popup } from './Popup';
 
-const ClientForm = ({data}) => {
+const ClientForm = ({ cuerrentUsert, defaultClient, action }) => {
+
+    
 
     const [isOpen, setIsOpen] = useState(false);
-    const [datos, handleInputChange, reset, setValues] = useForm(data);
+    const [datos, handleInputChange, reset, setValues] = useForm(defaultClient);
 
-    useEffect(() => {
-        setValues({
-            ...data
-    }, [data])});
 
     const handleClient = (event) => {
         event.preventDefault();
@@ -21,13 +19,21 @@ const ClientForm = ({data}) => {
 
     const handleCreateClient = () => {
         if (datos.codigo_cliente) {
-            updateClient(datos);
-        }else{
-            createClient(datos);
+            updateClient(datos).then(() => {
+                action(defaultClient);
+            });
+        } else {
+            createClient(datos).then(() => {
+                action(defaultClient);
+            });
         }
         setIsOpen(!isOpen);
         reset();
     }
+    useEffect(() => {
+        let date = cuerrentUsert.fecha_nacimiento !== '' ? cuerrentUsert.fecha_nacimiento.split('T') : '';
+        setValues({ ...cuerrentUsert, 'fecha_nacimiento': date[0] })
+    }, [cuerrentUsert]);
 
     return (
         <div>
@@ -101,22 +107,22 @@ const ClientForm = ({data}) => {
                     </div>
 
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">{datos.codigo_cliente? 'Actualizar' : 'Agregar'}</button>
+                        <button type="submit" className="btn btn-primary">{datos.codigo_cliente ? 'Actualizar' : 'Agregar'}</button>
                     </div>
                 </form>
             </div>
             {isOpen && <Popup
                 content={<>
-                    <b>Confirmación</b>
-                    <p>Confirmate create user</p>
-                    <button onClick={handleCreateClient}>yes</button>
-                    <button onClick={() => {
+                    <b>confirmatin</b>
+                    <p>Confirmate create or update user</p>
+                    <button className="btn btn-primary" onClick={handleCreateClient}>yes</button>
+                    <button className="btn btn-primary" onClick={() => {
                         setIsOpen(!isOpen)
                         reset();
                     }
                     }> Not</button>
                 </>}
-                handleClose={()=>{
+                handleClose={() => {
                     setIsOpen(!isOpen)
                 }}
             />}
