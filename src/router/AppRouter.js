@@ -7,8 +7,8 @@ import {
   } from 'react-router-dom';
 import Login from '../components/Login/Login';
 import { NavBar } from '../components/molecule/NavBar';
-import { ClientPage } from '../components/pages/ClientPage.js';
-import { CdPage } from '../components/pages/CdPage';
+import { ClientPage } from '../components/pages/clientepage/ClientPage.js';
+import { CdPage } from '../components/pages/cdpages/CdPage';
 
 
 

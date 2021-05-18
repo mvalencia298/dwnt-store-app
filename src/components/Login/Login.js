@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useForm } from '../../hooks/useForm';
 import './login.css';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCD } from '../../helper/cd';
+import { getCD } from '../../../helper/cd';
 
 export const TableCD = ({currentCD, action }) => {
     useEffect(() => {
@@ -12,7 +12,10 @@ export const TableCD = ({currentCD, action }) => {
     const [cd, setCd] = useState([currentCD]);
 
     const handleUpdate = (u) => {
-        action(u);
+        action(prevState => ({
+            ...prevState,
+            'currentCD': u
+        }));
     }
 
     return (
