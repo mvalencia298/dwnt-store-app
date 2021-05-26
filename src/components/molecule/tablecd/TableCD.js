@@ -13,7 +13,7 @@ export const TableCD = ({currentCD, action }) => {
 
     const handleUpdate = (u) => {
         action(prevState => ({
-            ...prevState,
+            'agregar': true,
             'currentCD': u
         }));
     }
@@ -29,7 +29,7 @@ export const TableCD = ({currentCD, action }) => {
                                 <th>condicion</th>
                                 <th>ubicacion</th>
                                 <th>estado</th>
-                                <th>...</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

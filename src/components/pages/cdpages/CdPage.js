@@ -30,7 +30,7 @@ export const CdPage = () => {
     return (
         <div>
                         <div className = "container">
-            <button className='btn btn-primary' onClick = {handlePage}>{cuerrentPageState.agregar ? 'Tabla de usaurio' : 'Agregar' }</button>
+            <button className='btn btn-primary' onClick = {handlePage}>{cuerrentPageState.agregar ? 'Tabla de CD' : 'Agregar' }</button>
             </div>
             <div className = "container">
             {

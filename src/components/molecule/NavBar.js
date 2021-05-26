@@ -12,6 +12,7 @@ export const NavBar = () => {
                     <NavLink exact activeClassName="active" to="/" className="nav-item nav-link"> Logout </NavLink>
                     <NavLink exact activeClassName="active" to="/client" className="nav-item nav-link"> Cliente </NavLink>
                     <NavLink exact activeClassName="active" to="/cd" className="nav-item nav-link"> CD</NavLink>
+                    <NavLink exact activeClassName="active" to="/rental" className="nav-item nav-link"> alquiler</NavLink>
                 </div>
             </div>
         </nav>

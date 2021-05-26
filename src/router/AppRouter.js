@@ -9,6 +9,7 @@ import Login from '../components/Login/Login';
 import { NavBar } from '../components/molecule/NavBar';
 import { ClientPage } from '../components/pages/clientepage/ClientPage.js';
 import { CdPage } from '../components/pages/cdpages/CdPage';
+import { RentalPage } from '../components/pages/rentalpage/RentalPage';
 
 
 
@@ -31,6 +32,9 @@ export const AppRouter = () => {
               </Route>
               <Route exact path="/cd">
               <CdPage />
+              </Route>
+              <Route exact path="/rental">
+              <RentalPage />
               </Route>
               <Route exact path="/">
                 <Login session = {session} setSession={setSession} />
