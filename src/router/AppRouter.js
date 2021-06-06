@@ -10,6 +10,7 @@ import { NavBar } from '../components/molecule/NavBar';
 import { ClientPage } from '../components/pages/clientepage/ClientPage.js';
 import { CdPage } from '../components/pages/cdpages/CdPage';
 import { RentalPage } from '../components/pages/rentalpage/RentalPage';
+import { RentalDetailPage } from '../components/pages/rentalDetailpage/RentalDetailPage';
 
 
 
@@ -35,6 +36,9 @@ export const AppRouter = () => {
               </Route>
               <Route exact path="/rental">
               <RentalPage />
+              </Route>
+              <Route exact path="/rental/detail">
+              <RentalDetailPage />
               </Route>
               <Route exact path="/">
                 <Login session = {session} setSession={setSession} />
