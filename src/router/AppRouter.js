@@ -11,6 +11,7 @@ import { ClientPage } from '../components/pages/clientepage/ClientPage.js';
 import { CdPage } from '../components/pages/cdpages/CdPage';
 import { RentalPage } from '../components/pages/rentalpage/RentalPage';
 import { RentalDetailPage } from '../components/pages/rentalDetailpage/RentalDetailPage';
+import { SantionPage } from '../components/pages/santionpage/SantionPage';
 
 
 
@@ -39,6 +40,9 @@ export const AppRouter = () => {
               </Route>
               <Route exact path="/rental/detail">
               <RentalDetailPage />
+              </Route>
+              <Route exact path="/santion">
+              <SantionPage />
               </Route>
               <Route exact path="/">
                 <Login session = {session} setSession={setSession} />

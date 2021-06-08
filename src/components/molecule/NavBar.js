@@ -14,6 +14,7 @@ export const NavBar = () => {
                     <NavLink exact activeClassName="active" to="/cd" className="nav-item nav-link"> CD</NavLink>
                     <NavLink exact activeClassName="active" to="/rental" className="nav-item nav-link"> Alquiler</NavLink>
                     <NavLink exact activeClassName="active" to="/rental/detail" className="nav-item nav-link"> Detalle alquiler</NavLink>
+                    <NavLink exact activeClassName="active" to="/santion" className="nav-item nav-link"> Sancion</NavLink>
                 </div>
             </div>
         </nav>

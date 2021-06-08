@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+}
+
+th, td {
+    display: flex;
+    flex-wrap: wrap;
+}
